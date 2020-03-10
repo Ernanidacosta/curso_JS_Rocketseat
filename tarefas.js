@@ -8,3 +8,14 @@ var tarefas = [
     'estudar firebase',
     'estudar cloud run - knative'
 ];
+
+function renderTarefas(){
+    for (tarefa of tarefas){
+        var tarefaElement = document.createElement('li');
+        var tarefasText = document.createTextNode(tarefa);
+
+        tarefaElement.appendChild(tarefasText);
+        listElement.appendChild(tarefaElement);
+    }
+}
+renderTarefas();
