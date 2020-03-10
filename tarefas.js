@@ -3,11 +3,7 @@ var inputElement = document.querySelector('#app input');
 var buttonElement = document.querySelector('#app button');
 
 
-var tarefas = [
-    'estudar cloud functions',
-    'estudar firebase',
-    'estudar cloud run - knative'
-];
+var tarefas = JSON.parse(localStorage.getItem('list_tarefas')) || [];
 
 function renderTarefas(){
     listElement.innerHTML = '';
@@ -40,6 +36,7 @@ function addTarefa(){
     tarefas.push(tarefasText);
     inputElement.value = '';
     renderTarefas();
+    saveToStorage();
 }
 
 buttonElement.onclick = addTarefa;
@@ -47,4 +44,9 @@ buttonElement.onclick = addTarefa;
 function deleteTarefas(pos){
     tarefas.splice(pos, 1);
     renderTarefas();
+    saveToStorage();
+}
+
+function saveToStorage(){
+    localStorage.setItem('list_tarefas', JSON.stringify(tarefas));
 }
