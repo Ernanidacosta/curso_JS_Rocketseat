@@ -19,9 +19,13 @@ function renderTarefas(){
         var linkElement = document.createElement('a');
         linkElement.setAttribute('href', '#');
 
+        var pos = tarefas.indexOf(tarefa);
+        linkElement.setAttribute('onclick', 'deleteTarefas('+ pos +')');
+
         var linkText = document.createTextNode('Excluir');
 
         linkElement.appendChild(linkText);
+
         
         tarefaElement.appendChild(tarefasText);
         tarefaElement.appendChild(linkElement);
@@ -39,3 +43,8 @@ function addTarefa(){
 }
 
 buttonElement.onclick = addTarefa;
+
+function deleteTarefas(pos){
+    tarefas.splice(pos, 1);
+    renderTarefas();
+}
